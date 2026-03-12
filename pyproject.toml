@@ -1,0 +1,34 @@
+[project]
+name = "mrs-build"
+version = "0.1.0"
+description = "Colcon wrapper for working with ros2 workspaces"
+readme = "README.md"
+authors = [
+    { name = "pum1k" },
+]
+license = { file = "LICENSE" }
+
+requires-python = ">=3.12"
+dependencies = [ "argcomplete>=3.6.3" ]
+
+[project.scripts]
+mrs-build = "mrs_build.main:main"
+
+[build-system]
+requires = [ "uv_build>=0.10.4,<0.11.0" ]
+build-backend = "uv_build"
+
+[tool.isort]
+profile = "black"
+line_length = 80
+
+[tool.black]
+line-length = 80
+
+[dependency-groups]
+dev = [
+    "black>=26.1.0",
+    "isort>=8.0.0",
+    "pyright>=1.1.408",
+    "ruff>=0.15.5",
+]
