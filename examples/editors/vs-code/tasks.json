@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build current package",
+            "type": "shell",
+            "command": "mrs-build",
+            "args": [
+                "build",
+                "--path",
+                "${file}",
+            ],
+            "problemMatcher": "$gcc",
+            "group": "build",
+        },
+        {
+            "label": "Build current package (skip dependencies)",
+            "type": "shell",
+            "command": "mrs-build",
+            "args": [
+                "build",
+                "--path",
+                "${file}",
+                "--skip-dependencies",
+            ],
+            "problemMatcher": "$gcc",
+            "group": "build",
+        },
+        {
+            "label": "Build all packages",
+            "type": "shell",
+            "command": "mrs-build",
+            "args": [
+                "build",
+                "--all",
+            ],
+            "problemMatcher": "$gcc",
+            "group": "build"
+        }
+    ]
+}

@@ -16,3 +16,8 @@ To setup shell completions, add the following to your config (eg. `.bashrc`, for
 ```shell
 eval "$(mrs-build generate-shell-completion bash)"
 ```
+
+## Using in editor
+
+You can setup `mrs-build` to build packages directly from your editor.
+See `examples/editors/` for more information.
