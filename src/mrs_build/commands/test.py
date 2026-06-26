@@ -63,13 +63,16 @@ def _test_command(args: _TestArgs) -> int:
     test_command = [
         "colcon",
         "test",
-        "--packages-select",
-        args.package,
         "--event-handlers",
         "console_direct+",
         "console_stderr-",
         "console_start_end-",
     ]
+    if not isinstance(args.package, AllPackagesTag):
+        test_command += [
+            "--packages-select",
+            args.package,
+        ]
     if args.pattern is not None:
         test_command += [
             "--ctest-args",
