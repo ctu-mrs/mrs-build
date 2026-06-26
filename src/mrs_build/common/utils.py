@@ -4,7 +4,7 @@ import pathlib
 import re
 import subprocess
 import xml.etree.ElementTree as ET
-from typing import Optional
+from typing import Any, Optional
 
 from .cache import get_cache_data, update_cache
 from .errors import UserError
@@ -29,7 +29,7 @@ def _get_default_colcon_env() -> dict[str, str]:
     return env
 
 
-def run_colcon(*args, **kwargs) -> subprocess.CompletedProcess[bytes]:
+def run_colcon(*args: Any, **kwargs: Any) -> subprocess.CompletedProcess[bytes]:
     env = _get_default_colcon_env()
     if "env" in kwargs:
         env.update(kwargs["env"])
@@ -128,7 +128,7 @@ def get_install_env() -> dict[str, str]:
         )
         raise RuntimeError("failed to get install env")
     output = res.stdout.decode()
-    env = {}
+    env: dict[str, str] = {}
     for line in output.splitlines():
         name, val = line.split("=", maxsplit=1)
         assert name not in env

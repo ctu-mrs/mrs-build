@@ -9,7 +9,7 @@ class AllPackagesTag:
     pass
 
 
-def package_completer(**kwargs) -> list[str]:
+def package_completer(**kwargs: Any) -> list[str]:
     return get_cached_packages_list(max_age_s=5 * 60)
 
 

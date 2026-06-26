@@ -1,5 +1,6 @@
 import argparse
 import dataclasses
+from typing import Any
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -19,7 +20,7 @@ def configure_common_args(parser: argparse.ArgumentParser) -> None:
 
 
 def extract_common_args(args: argparse.Namespace) -> CommonArgs:
-    common_args = {}
+    common_args: dict[str, Any] = {}
     for field in dataclasses.fields(CommonArgs):
         name = field.name
         common_args[name] = getattr(args, name)

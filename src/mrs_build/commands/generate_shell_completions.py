@@ -1,7 +1,9 @@
 import argparse
 import dataclasses
 
-import argcomplete
+from argcomplete.shell_integration import (
+    shellcode,  # pyright: ignore[reportUnknownVariableType]
+)
 
 from ..common.cli_args import get_default_process_args
 from .command import Command
@@ -17,9 +19,7 @@ def _configure_parser(parser: argparse.ArgumentParser):
 
 
 def _generate_shell_completion(args: _GenerateShellCompletionsArgs) -> None:
-    code = argcomplete.shell_integration.shellcode(
-        ["mrs-build"], shell=args.shell
-    )
+    code = shellcode(["mrs-build"], shell=args.shell)
     print(code)
 
 

@@ -1,7 +1,7 @@
 import datetime
 import logging
 import sys
-import typing
+from typing import Any, TextIO
 
 
 class Color:
@@ -25,7 +25,7 @@ class ColorFormatter(logging.Formatter):
 
     LEVEL_NAME_WIDTH = 8
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
 
     def level_to_color(self, level: str):
@@ -73,7 +73,7 @@ class ColorFormatter(logging.Formatter):
 def initialize_color_logger(
     logger: logging.Logger,
     level: int = logging.WARNING,
-    stream: typing.TextIO = sys.stderr,
+    stream: TextIO = sys.stderr,
 ) -> None:
     handler = logging.StreamHandler(stream=stream)
     formatter = ColorFormatter()

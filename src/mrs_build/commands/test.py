@@ -54,13 +54,13 @@ def _configure_parser(parser: argparse.ArgumentParser):
 
 
 def _test_command(args: _TestArgs) -> int:
-    test_env = {}
+    test_env: dict[str, str] = {}
     if args.use_install_environment:
         test_env.update(get_install_env())
     test_env.update(get_settings().environment)
 
-    clear_command = ["colcon", "test-result", "--delete-yes"]
-    test_command = [
+    clear_command: list[str] = ["colcon", "test-result", "--delete-yes"]
+    test_command: list[str] = [
         "colcon",
         "test",
         "--event-handlers",
@@ -85,7 +85,7 @@ def _test_command(args: _TestArgs) -> int:
             "-L",
             args.label,
         ]
-    results_command = ["colcon", "test-result", "--all", "--verbose"]
+    results_command: list[str] = ["colcon", "test-result", "--all", "--verbose"]
 
     _logger.info("Clearing previous results...")
     result = run_colcon(clear_command, env=test_env)

@@ -25,6 +25,9 @@ line_length = 80
 [tool.black]
 line-length = 80
 
+[tool.pyright]
+typeCheckingMode = "strict"
+
 [dependency-groups]
 dev = [
     "black>=26.1.0",
