@@ -27,7 +27,11 @@ def _get_content_age(key: str) -> float | None:
 
 def update_cache(key: str, data: str) -> None:
     path = _get_path_for_key(key)
-    _logger.debug(f"Cache key '{key}' age: {_get_content_age(key):.0f}s")
+    content_age = _get_content_age(key)
+    if content_age is not None:
+        _logger.debug(f"Cache key '{key}' age: {content_age:.0f}s")
+    else:
+        _logger.debug(f"Cache key '{key}' does not yet exist.")
     with open(path, "r+") as file:
         prev_contents = file.read()
         if prev_contents == data:
